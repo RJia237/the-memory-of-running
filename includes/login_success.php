@@ -1,0 +1,14 @@
+<?php
+
+session_start();
+if(!session_is_registered(user_email)){
+header("location:login.php");
+}
+
+?>
+
+<html>
+<body>
+Login Successful
+</body>
+</html>
