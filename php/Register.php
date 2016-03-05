@@ -1,5 +1,3 @@
-<?php require "../includes/connect.php";?>
-
 <html>
 <head>
   <title>Register</title>
@@ -28,8 +26,8 @@
  </div>
  
     <p>
-      <a href="Register.php">Return to form</a><br />
-      <a href="index.php">Go to index</a>
+      <a href="Login.php">Log in</a><br />
+      <a href="index.php">Go to Home Page</a>
     </p>
 
 

@@ -9,42 +9,70 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 <!-- Link to Font Awesome-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
+<body>
 
+</head>
 <body> 
 <!-- This is the navigation bar -->
-<nav class="navbar">
-		<div class='container'>
-		<ul>
-        <li><a href="Login.php">Login</a></li>
-		<li><a class="nav-link" href='Register.php#'>Register</a></li>
+<nav class="navbar" id='cssmenu'>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">OnlineAuction </a>
+		<ul class="nav navbar-nav">
+      <li class="active"><a href="index.php">Home</a></li>
+      <li><a href="#">Products</a></li>
+      </div>
+        
+        <div>
+			<ul class="nav navbar-nav pull-right">
+				<li class="nav-item active">
+					<a class="nav-link" href='Login.php'>Login</a>
+					<li><a class="nav-link" href='Register.php#'>Register</a></li>
+				</li>
 			</ul>
 		</div>
 </nav>
-
-<div>
-<a class="navbar-brand white-title">Welcome to Online Auction!</a>
+      
+<!-- Jumbotron -->      
+<div class="jumbotron text-center">
+	<div class="container">
+	<div class="card">
+    <div class="row">
+    	<div class="col-md-8 col-md-offset-2">
+    		<h1 class="display-3">
+    			Welcome to OnlineAuction
+    		</h1>
+    	 </div>
+	 </div>
+	</div>
+   </div>
+   
+<div class="container">
+<form method='post' action='../includes/SignIn.php' >
+  <div class="form-group">
+    <label class="sr-only">Email address</label>
+    <input type="text" name="email" id='user_email' class="form-control" placeholder='Email'>
+  </div> 
+  <div class="form-group">
+    <label class="sr-only">Password</label>
+    <input type="password" name="password" id="user_password"class="form-control" placeholder='Password'>
+  </div>
+  <div class="checkbox">
+    <label><input type="checkbox"> Remember me</label> 
+    <button type="submit" name="login" class="btn btn-default">Sign in</button>
+</form> 
 </div>
 
 
-<div class="text-centre">
-<!--Dropdown button-->
-<div class="dropdown">
-    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">All categories
-    <span class="caret"></span></button>
-     <ul class="dropdown-menu">
-      <li class="dropdown-header">Categories</li>
-      <li ><a tabindex="-1" href="#">Clothes</a></li>
-      <li ><a tabindex="-1" href="#">Electronics</a></li>
-      <li ><a  tabindex="-1" href="#">Toys</a></li>
-    </ul>
-  
-<!-- The search box; can search by categories --!>
-<form>
-    <input type="text" placeholder="Search items..." required>
-    <input type="button" value="Search">
-</form>
-</div>
+
+      
+
+      
+
+		
 
 
 

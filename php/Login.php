@@ -1,12 +1,4 @@
-<?php
-     session_start();
-     
-     if($_POST['login']){
-     include_once("../includes/connect.php");
-     $username
-
-
-
+<!DOCTYPE html>
 <html>
 <head>
   <title>Login</title>
@@ -16,20 +8,19 @@
 
 <body>
 <h2>Please Login</h2>
-<form class="form-inline" method="post" action="includes/login.php" >
+<form class="form-inline" method='post' action='../includes/SignIn.php' >
   <div class="form-group">
     <label class="sr-only" for="exampleInputEmail3">Email address</label>
-    <input type="text" name="user_email" class="form-control" placeholder="Email">
+    <input type="text" name="email" id='user_email' class="form-control" placeholder='Email'>
   <div class="form-group">
     <label class="sr-only" for="exampleInputPassword3">Password</label>
-    <input type="password" name="user_password "class="form-control" placeholder="Password">
+    <input type="password" name="password" id="user_password"class="form-control" placeholder='Password'>
   <div class="checkbox">
-    <label>
-      <input type="checkbox"> Remember me</label>
-      <button type="submit" name="submit "class="btn btn-default" action="../includes/login.php">Sign in</button>
+    <label><input type="checkbox"> Remember me</label>
+      <button type="submit" name="login" class="btn btn-default">Sign in</button>
 </form>
 
 
 
 </body>
-</html
+</html>
