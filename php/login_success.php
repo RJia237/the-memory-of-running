@@ -18,20 +18,24 @@ if(isset($_SESSION['user_id'])){
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 <!-- Link to Font Awesome-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="script.js"></script>
 </head>
 
-
-
+<body>
 <nav class="navbar" id='cssmenu'>
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">OnlineAuction </a>
     </div>
-    <ul class="nav navbar-nav">
+    <ul class="nav navbar-nav pull-left">
       <li class="active"><a href="login_sucess.php">Home</a></li>
       <li><a href="#">Page 2</a></li>
-      <li><a href="#">Page 3</a></li>ul>
-    <ul class="nav navbar-nav navbar-right">
+    </ul>
+    <ul class="nav navbar-nav pull-right">
       <li><a href="#"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
       <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
     </ul>
@@ -41,59 +45,60 @@ if(isset($_SESSION['user_id'])){
 
 
 
-<div>
+<div class="card-text">
 <a class="navbar-brand white-title">Welcome to Online Auction!</a>
 </div>
 
-
-<div class="text-centre">
-<!--Dropdown button-->
-<div class="dropdown">
-    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">All categories
-    <span class="caret"></span></button>
-     <ul class="dropdown-menu">
-      <li class="dropdown-header">Categories</li>
-      <li ><a tabindex="-1" href="#">Clothes</a></li>
-      <li ><a tabindex="-1" href="#">Electronics</a></li>
-      <li ><a  tabindex="-1" href="#">Toys</a></li>
-    </ul>
-  
-<!-- The search box; can search by categories -->
-<form>
-    <input type="text" placeholder="Search items..." required>
-    <input type="button" value="Search">
-</form>
+<!--Search by categories-->
+<div class="container">
+    <form action='../includes/dropdown_category.php' method='GET'>
+      <div class="row">
+         <div class="col-xs-8 col-xs-offset-2">
+		<div class="input-group">
+                <div class="input-group-btn search-panel">
+                    <button type="button" name='categories' class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    	<span id="search_concept">Categories</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#its_equal">Antiques</a></li>
+                      <li><a href="#greather_than">Clothing</a></li>
+                      <li><a href="#less_than">Electronics</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#all">All categories</a></li>
+                    </ul>
+                </div>
+                <input type="hidden" name="search_param" value="all" id="search_param">         
+                <input type="text" class="form-control" name="search" placeholder="Search term...">
+                <span class="input-group-btn">
+                   <button class="btn btn-default" name='search' type="button"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+            </div>
+         </div>
+      </div>
+    </form>
 </div>
 
-<div class="col-md-4">
-
-<ul>
-<a href='#'>I want to see</a>
-<a href='#'>I want to buy</a>
-</ul>
+<!--Side bar content-->
+<div class='container'>
+     <div class='row-fluid'>
+	<div class="span2">
+                    <ul><h5><a href='AddItem.php'>I want to sell</a><h5>
+                    </ul>
+                    <ul><h5><a href='#'>I want to buy</a><h5>
+                    </ul> 
+    
+     
+<div class="span10">
+    <p>items</p>
+<div class="row-fluid">
+          <div class="span4">Fluid 6</div>
+          <div class="span4">Fluid 6</div>
+          <div class='span4'>haha</div>
+       
+        </div>
+     </div>
+  </div>
 </div>
-
-<div class="col-md-8">
-				<div class="card">
-				    <div class= "card-block">
-					<h4 class="card-title">
-						My items  
-					</h4>
-					<p class="card-text">
-						Here is links/images of the items I sell
-                     </p>
-                    </div>
-				</div>
-				<div class="card">
-					<div class="card-block">
-						<h4 class="card-title">
-							My bids
-						</h4>
-						<p class="card-text">
-							<strong> I like being on duty of grumping. It's in my blood.</stron>
-						</p>
-						</div>
-
 
 
 

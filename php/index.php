@@ -27,43 +27,45 @@
       </div>
         
         <div>
-			<ul class="nav navbar-nav pull-right">
-				<li class="nav-item active">
-					<a class="nav-link" href='Login.php'>Login</a>
-					<li><a class="nav-link" href='Register.php#'>Register</a></li>
-				</li>
-			</ul>
-		</div>
+	    <ul class="nav navbar-nav pull-right">
+		<li class="nav-item active">
+		  <a class="nav-link" href='Login.php'>Login</a>
+		<li><a class="nav-link" href='Register.php'>Register</a></li>
+		</li>
+	    </ul>
+	</div>
 </nav>
       
 <!-- Jumbotron -->      
 <div class="jumbotron text-center">
-	<div class="container">
-	<div class="card">
-    <div class="row">
-    	<div class="col-md-8 col-md-offset-2">
-    		<h1 class="display-3">
+ <div class="container">
+   <div class="card">
+     <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+    	    <h1 class="display-3">
     			Welcome to OnlineAuction
-    		</h1>
-    	 </div>
-	 </div>
-	</div>
+    	    </h1>
+        </div>
+     </div>
    </div>
+  </div>
+
    
 <div class="container">
-<form method='post' action='../includes/SignIn.php' >
-  <div class="form-group">
-    <label class="sr-only">Email address</label>
-    <input type="text" name="email" id='user_email' class="form-control" placeholder='Email'>
-  </div> 
-  <div class="form-group">
-    <label class="sr-only">Password</label>
-    <input type="password" name="password" id="user_password"class="form-control" placeholder='Password'>
-  </div>
-  <div class="checkbox">
-    <label><input type="checkbox"> Remember me</label> 
-    <button type="submit" name="login" class="btn btn-default">Sign in</button>
-</form> 
+    <form method='post' action='../includes/SignIn.php' >
+        <div class="form-group">
+           <label class="sr-only">Email address</label>
+           <input type="text" name="email" id='user_email' class="form-control" placeholder='Email'>
+        </div>
+           <div class="form-group">
+           <label class="sr-only">Password</label>
+           <input type="password" name="password" id="user_password"class="form-control" placeholder='Password'>
+        <div class="checkbox">
+           <label><input type="checkbox"> Remember me</label> 
+              <button type="submit" name="login" class="btn btn-default">Sign in</button>
+        </div>
+
+    </form> 
 </div>
 
 

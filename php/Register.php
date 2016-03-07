@@ -3,9 +3,29 @@
   <title>Register</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
+
 <body>
 
+<nav class="navbar" id='cssmenu'>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">OnlineAuction </a>
+		<ul class="nav navbar-nav">
+      <li class="active"><a href="index.php">Home</a></li>
+      <li><a href="#">Products</a></li>
+      </div>
+        
+        <div>
+			<ul class="nav navbar-nav pull-right">
+				<li class="nav-item active">
+					<a class="nav-link" href='Login.php'>Login</a>
+				</li>
+			</ul>
+		</div>
+</nav>
 
 <div class="container">
 <h2>Create a New Account</h2>
@@ -25,10 +45,6 @@
  </form>
  </div>
  
-    <p>
-      <a href="Login.php">Log in</a><br />
-      <a href="index.php">Go to Home Page</a>
-    </p>
 
 
   
