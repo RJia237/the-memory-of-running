@@ -1,11 +1,4 @@
-<?php require '../includes/connect.php';
-//Check if user is logged in
-session_start();
-if(isset($_SESSION['user_id'])){
-}else{
-    header('Location:Login.php');
-}
-?>
+<?php require '../includes/connect.php'; ?>
 
 <?php
 //display items.
@@ -89,14 +82,14 @@ $result=mysqli_query($connection, $sql);
     
 <!--product display-->  
 
-<div class="container">
+<div class="page open">
     <?php 
     while ($row=$result->fetch_assoc()){
 ?>
-    <div class="row-fluid pull-left">
+    <div class="section">
           <ul class="reset titles"> 
                 <li> <img src="data:image/jpeg;base64,<?php echo base64_encode($row['item_image']); ?>"
-                 style="width:200px;height:230px"/>
+                 style="width:250px;height:200px"/>
                     <h4 class="h4">
                         <?php echo $row['item_name'];?></h4>
                     <p> From £<?php echo $row['item_selling_price'];?> </p>
