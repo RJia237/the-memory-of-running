@@ -23,8 +23,7 @@
       <a class="navbar-brand" href="#">OnlineAuction </a>
 		<ul class="nav navbar-nav">
       <li class="active"><a href="index.php">Home</a></li>
-      <li><a href="#">Products</a></li>
-      </div>
+    </div>
         
         <div>
 	    <ul class="nav navbar-nav pull-right">

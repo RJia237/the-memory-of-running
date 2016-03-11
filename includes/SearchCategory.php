@@ -26,7 +26,9 @@ do{
 
 ?>
       
-      
+
+remember to use mysqli_real_escape_string($connection, $_GET($item))
 <?php
 //create an array of categories
 $categories=['Clothing','Antiques', 'Electronics' ];
+

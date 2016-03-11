@@ -12,11 +12,12 @@ require 'connect.php';
    $result=$connection->query("SELECT * FROM user WHERE user_email='$EM'AND user_password='$PS' ");
     
     $row= mysqli_fetch_assoc($result);
- 
     $_SESSION['user_id']=$row['user_id'];
     
     header('Location:../php/login_success.php');
         
+    }else{
+        echo"Error! Can't login.";
     }
     
 ob_end_flush(); 
