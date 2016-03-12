@@ -51,7 +51,7 @@
 
    
 <div class="container">
-    <form method='post' action='../includes/SignIn.php' >
+    <form method='post' action='../includes/login.php' >
         <div class="form-group">
            <label class="sr-only">Email address</label>
            <input type="text" name="email" id='user_email' class="form-control" placeholder='Email'>

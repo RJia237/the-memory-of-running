@@ -17,44 +17,26 @@ session_destroy();
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 <!-- Link to Font Awesome-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="script.js"></script>
 </head>
 
-<body> 
+<body>
 <!-- This is the navigation bar -->
-<nav class="navbar">
-		<div class='container'>
-		<ul>
-                    <li><a>Your account</a></li>
-                    <br><?php echo $_SESSION["user_id"]; ?>
-		</ul>
-		</div>
+<nav class="navbar" id='cssmenu'>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">OnlineAuction </a>
+    </div>
 </nav>
 
-<div>
-<a class="navbar-brand white-title">Welcome to Online Auction!</a>
+
+<div> 
+    <h4>You have logged out</h4>
 </div>
-
-
-<div class="text-centre">
-<!--Dropdown button-->
-<div class="dropdown">
-    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">All categories
-    <span class="caret"></span></button>
-     <ul class="dropdown-menu">
-      <li class="dropdown-header">Categories</li>
-      <li ><a tabindex="-1" href="#">Clothes</a></li>
-      <li ><a tabindex="-1" href="#">Electronics</a></li>
-      <li ><a  tabindex="-1" href="#">Toys</a></li>
-    </ul>
-  
-<!-- The search box; can search by categories --!>
-<form>
-    <input type="text" placeholder="Search items..." required>
-    <input type="button" value="Search">
-</form>
-</div>
-
-
 
 
 </body>

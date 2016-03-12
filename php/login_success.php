@@ -1,7 +1,7 @@
 <?php require '../includes/connect.php';
 //Check if user is logged in
 session_start();
-if(isset($_SESSION['user_id'])){
+if(isset($_SESSION['UserID'])){
 }else{
     header('Location:Login.php');
 }
@@ -47,36 +47,12 @@ $result=mysqli_query($connection, $sql);
 
 <!--Search by categories-->
 <div class="container">
-    <form action='../includes/dropdown_category.php' method='GET'>
-      <div class="row">
-         <div class="col-xs-8 col-xs-offset-2">
-		<div class="input-group">
-                <div class="input-group-btn search-panel">
-                    <button type="button" name='categories' class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    	<span id="search_concept">Categories</span> <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#its_equal">Antiques</a></li>
-                      <li><a href="#greather_than">Clothing</a></li>
-                      <li><a href="#less_than">Electronics</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#">All categories</a></li>
-                    </ul>
-                </div>
-                <input type="hidden" name="search_param" value="all" id="search_param">         
-                <input type="text" class="form-control" name="search" placeholder="Search term...">
-                <span class="input-group-btn">
-                   <button class="btn btn-default" name='search' type="button"><span class="glyphicon glyphicon-search"></span></button>
-                </span>
-            </div>
-         </div>
-      </div>
-    </form>
+   <?php include '../includes/SearchCategory.php'; ?>
 </div>
     
 <!--product display-->  
 
-<div class="container">
+<div class="container" id="itemdisplay">
     <?php 
     while ($row=$result->fetch_assoc()){
 ?>

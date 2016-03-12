@@ -1,5 +1,15 @@
+<?php require '../includes/connect.php';
+//Check if user is logged in
+session_start();
+if(isset($_SESSION['UserID'])){
+}else{
+    header('Location:Login.php');
+}
+?>
+
+
 <?php
-require "../includes/connect.php";
+//display item information
 
 if(isset($_POST["item_id"])){
     $itemid = $connection->real_escape_string($_POST["item_id"]);
@@ -9,6 +19,7 @@ if(isset($_POST["item_id"])){
 
 //Input new bid
 $newbid=$_POST['new_bid'];
+$userid=$_SESSION['UserID'];
 
 
 //display items.
@@ -22,26 +33,30 @@ $result=mysqli_query($connection, $sql);
         }
 
 
-//Input new bid
-if (isset($_POST['new_bid_submit'])&& $newbid!=""){
-    if($newbid<$row['item_selling_price']){
-        echo "Bid has to be higher then the minimum bid!";
-        }
-        else if($_row['item_highest_bid']==0){
-             $connection->query("INSERT INTO item (item_highest_bid) VALUES ('$newbid')"
-             . "WHERE item_id = '$itemid' ");
-             }else{
-               $oldbid=$connection->query("SELECT item_highest_bid FROM item WHERE item_id='$itemid'");
-               }
-        if($newbid>$oldbid){ 
-            $connection->query("UPDATE item SET item_highest_bid= '$newbid' "
-            . "WHERE item_id = '$itemid' ");
-             echo"bid added";
-}else{
-    echo"Sorry! New bid has to be higher then the current highest bid.";
-}
+//Input new bidu
+if (isset($_POST['new_bid_submit'])){
+    if($row['item_highest_bid']=''){
+    $connection->query("INSERT INTO item (item_highest_bid,success_bidder_id) "
+            . "VALUES($newbid,$userid)"
+    . "WHERE item_id='$itemid'");
+    
+    }elseif($newbid<$row['item_selling_price']){
+              echo "Bid has to be higher then the minimum bid!";
+               }   
+        
+             if($newbid>$row['item_highest_bid']){ 
+              $connection->query("UPDATE item SET item_highest_bid= '{$newbid}' "
+              . "success_bidder_id='{$userid}'"
+              . "WHERE item_id = $itemid ");
+              echo"bid added";
+                }else{
+                 echo"Sorry! New bid has to be higher then the current highest bid.";
+                 }
+                 
+    header("Location:ItemDetail.php?item_id=$itemid");
     
 }
+
 
 
 ?>

@@ -30,37 +30,37 @@
 </nav>
 
 
-	  <form method="post" action='Addeditem3.php' enctype="multipart/form-data" class="form-horizontal" role="form">
+  <form method="post" action='../includes/Addeditem3.php' enctype="multipart/form-data" class="form-horizontal" role="form">
   <div class="form-group">
-    <label class="control-label col-sm-6" for="auction_item_name">Auction item name:</label>
+    <label class="control-label" for="auction_item_name">Auction item name:</label>
     <div class="col-sm-10">
       <input type="text" name = "auction_item_name" class="form-control" id="input" placeholder="Enter the title for your item" ><br>
     </div>
 	
   </div>
   <div class="form-group">
-    <label class="control-label col-sm-6" for="auction_item_description">Auction item description:</label>
+    <label class="control-label" for="auction_item_description">Auction item description:</label>
     <div class="col-sm-10"> 
       <input type="text" name= "auction_item_description" class="form-control" id="input" placeholder="Enter a description of your item" ><br>
     </div>
   </div>
 	
   <div class="form-group">
-    <label class="control-label col-sm-6" for="auction_item_starting_price">Auction starting price:</label>
+    <label class="control-label" for="auction_item_starting_price">Auction starting price:</label>
     <div class="col-sm-10"> 
       <input type="number" name = "auction_item_starting_price" class="form-control" id="input" placeholder="Enter your starting price" ><br>
     </div>
   </div>
   
   <div class="form-group">
-    <label class="control-label col-sm-6" for="auction_item_reserve_price">Auction reserve price:</label>
+    <label class="control-label" for="auction_item_reserve_price">Auction reserve price:</label>
     <div class="col-sm-10"> 
       <input type="number" class="form-control" name = "auction_item_reserve_price" id="input" placeholder="Enter your reserve price for your item" ><br>
     </div>
   </div>
   
   <div class="form-group">
-    <label class="control-label col-sm-6" for="category">Select a category </label>
+    <label class="control-label" for="category">Select a category </label>
     <select id = "category" name = "category">
                <option value = "clothe">Antique</option>
                <option value = "make_up">Clothing</option>

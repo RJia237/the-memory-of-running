@@ -28,7 +28,7 @@
 
 <div class="container">
 <h2>Please Login</h2>
-<form class="form-inline" method='post' action='../includes/SignIn.php' >
+<form class="form-inline" method='post' action='../includes/login.php' >
   <div class="form-group">
     <label class="sr-only" for="exampleInputEmail3">Email address</label>
     <input type="text" name="email" id='user_email' class="form-control" placeholder='Email'>

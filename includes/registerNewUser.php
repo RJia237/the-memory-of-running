@@ -17,10 +17,16 @@ require "connect.php";
                 . "user_lastname,user_dob)VALUES ('$email','$password' , '$firstname','$lastname','$dob')";
         $result = mysqli_query($connection, $query);
      
-        
+       
        header('Location:../php/Login.php');
 
      }
+     
+     
+     if($result){
+         header('Location:send_email.php');
+     }
+     
 ob_end_flush();      
 ?>
   

@@ -8,6 +8,6 @@
     </ul>
     <ul class="nav navbar-nav pull-right">
       <li><a href="#"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
+      <li><a href="logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
     </ul>
 </nav>
