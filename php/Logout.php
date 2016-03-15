@@ -29,8 +29,11 @@ session_destroy();
 <nav class="navbar" id='cssmenu'>
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">OnlineAuction </a>
+        <a class="navbar-brand" href="#">OnlineAuction </a>
+     <ul class="nav navbar-nav pull-left">
+      <li class="active"><a href="index.php">Home</a></li>
     </div>
+   </div>
 </nav>
 
 

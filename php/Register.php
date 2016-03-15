@@ -15,16 +15,15 @@
       <a class="navbar-brand" href="#">OnlineAuction </a>
 		<ul class="nav navbar-nav">
       <li class="active"><a href="index.php">Home</a></li>
-      <li><a href="#">Products</a></li>
       </div>
-        
-        <div>
-			<ul class="nav navbar-nav pull-right">
-				<li class="nav-item active">
-					<a class="nav-link" href='Login.php'>Login</a>
-				</li>
-			</ul>
-		</div>
+       <div>
+	<ul class="nav navbar-nav pull-right">
+	<li class="nav-item active">
+	     <a class="nav-link" href='Login.php'>Login</a>
+	</li>
+	</ul>
+       </div>
+  </div>
 </nav>
 
 <div class="container">

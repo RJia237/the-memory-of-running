@@ -99,6 +99,10 @@ if (isset($_POST['new_bid_submit'])){
                     </form>
               </div>
      </div>
-</div>   
+</div>
+    
+    
+    
+    
 </body>
 </html>

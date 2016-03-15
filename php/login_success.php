@@ -7,17 +7,6 @@ if(isset($_SESSION['UserID'])){
 }
 ?>
 
-<?php
-//display items.
-$message='';
-$sql="SELECT * FROM item";
-$result=mysqli_query($connection, $sql);
-        if($connection->error){
-            $message= $connection->error;
-        }
-?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,32 +35,123 @@ $result=mysqli_query($connection, $sql);
 </div>
 
 <!--Search by categories-->
-<div class="container">
-   <?php include '../includes/SearchCategory.php'; ?>
-</div>
+    <form action='login_success.php' method='GET'>
+        <div class='container-fluid' id='categorylist'>
+        <?php
+$catlist = "SELECT * FROM item_category";
+$c_query = mysqli_query($catlist);
+$category = mysqli_fetch_assoc($c_query);
+if (!$c_query = $connection->query($catlist)) {
+	die (' $connection->error');
+}
+?>
+      <div class="row">
+         <div class="col-xs-8 col-xs-offset-2">
+		<div class="input-group">
+                <div class="input-group-btn search-panel"> 
+                   <select type="button" name='categorylist' class="btn btn-default dropdown-toggle"
+                           value="Categories" data-toggle="dropdown">	
+                     <?php while ($category=$c_query->fetch_assoc()) {?>
+                        <option value="<?php echo $category["category_id"]; ?>">
+                       <?php echo $category["category_description"];?></option>
+           <?php };//end of the while loop?>
+                    </select> 
+                </div>
+                   <input type="text" class="form-control" name="item" placeholder="Search item...">
+                   <span class="input-group-btn">
+                   <input class="btn btn-default" name='search' type="submit" value='Search'>
+                   </span>
+               </div>
+          </div>
+       </div>
+    </div>
+  
+ <?php
+//display items.
+$allitems="SELECT * FROM item";
+$result_item_query=mysqli_query($connection, $allitems);
+        if($connection->error){
+            echo "Database connection error";
+        }    
+
+if (isset($_GET['search'])&& !empty($_GET['item']) && !empty($_GET['categorylist'])) {
+	$product = mysqli_real_escape_string($connection, $_GET['item']);
+	$categorylist = mysqli_real_escape_string($connection, $_GET['categorylist']);
+	$product_query = "SELECT * FROM item,item_category "
+                        . "WHERE item.item_category_id=item_category.category_id "
+                        . "AND item.item_name LIKE '%".$product."%' "
+                        . "AND item.item_category_id=".$categorylist;
+        
+	$result_item_query = mysqli_query($connection, $product_query);     
+        
+}elseif(isset($_GET['search'])&& !empty($_GET['categorylist'])) {
+	// $product = mysqli_real_escape_string($connection, $_GET['item']);
+	$categorylist = mysqli_real_escape_string($connection, $_GET['categorylist']);
+	$product_query ="SELECT * FROM item,item_category "
+                        . "WHERE item.item_category_id=item_category.category_id "
+                        . "AND item.item_category_id=".$categorylist;
+	$result_item_query = mysqli_query($connection, $product_query);
+       
+}elseif(isset($_GET['search'])&& !empty($_GET['item'])) {
+	$product = mysqli_real_escape_string($connection, $_GET['item']);
+	//$categorylist = mysqli_real_escape_string($con, $_GET['categorylist']);
+	$product_query = "SELECT * FROM item,item_category "
+                       . "WHERE item.item_category_id=item_category.category_id "
+                       . "AND item.item_name LIKE '%".$product."%'";
+	$result_item_query = mysqli_query($connection, $product_query); 
+        
+}elseif(isset($_GET['search'])&& empty($_GET['item']) && empty($_GET['categorylist']))
+{
+     $result_item_query = mysqli_query($connection, $allitems);
+   
+}       
+    if(!$result_item_query ){
+        die('Invalid query: ' . mysqli_error($connection));
+    }
+
+        if (mysqli_num_rows($result_item_query)==0 && isset($_GET["categorylist"]))
+{
+     echo "Please Select a different Category";
+}     
+        if (mysqli_num_rows($result_item_query)==0 && isset($_GET['search']))
+{
+      echo "There was no results found.";
+}   
+?>        
+        
+
     
 <!--product display-->  
 
 <div class="container" id="itemdisplay">
     <?php 
-    while ($row=$result->fetch_assoc()){
-?>
+    $i=0;
+    while ($row = mysqli_fetch_assoc($result_item_query)){
+        if($i%3===0){?>
     <div class="row-fluid pull-left">
-          <ul class="reset titles"> 
+          <ul class="items">
                 <li> <img src="data:image/jpeg;base64,<?php echo base64_encode($row['item_image']); ?>"
                  style="width:200px;height:230px"/>
                     <h4 class="h4">
                         <?php echo $row['item_name'];?></h4>
                     <p> From £<?php echo $row['item_selling_price'];?> </p>
-                    <a class="btn btn-info" name='details' href="ItemDetail.php?item_id=<?php echo $row[item_id];?>">View the item</a>
+                    <a class="btn btn-info" name='details' href="ItemDetail.php?item_id=<?php echo $row['item_id'];?>">View the item</a>
                 </li>
-           </ul>
+          </ul>
     </div>
-<?php }//end of loop?>
-</div> 
-             
+     <?php }//end if
+    }//end of loop?>
+</div>  
 
-    
+
+
+
+
+
+
+</form>
+
+              
 
 </body>
 </html>
