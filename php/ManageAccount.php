@@ -59,20 +59,17 @@ if(isset($_SESSION['UserID'])){
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">OnlineAuction </a>
-		<ul class="nav navbar-nav">
-      <li class="active"><a href="index.php">Home</a></li>
-    </div>       
-       <div>
-          <ul class="nav navbar-nav pull-right">
-	   <li class="nav-item active">
-	      <a class="nav-link" href='Logout.php'>Log out</a>
-	    </li>
-          </ul>
-      </div>
-  </div>
+    </div>
+    <ul class="nav navbar-nav pull-left">
+      <li class="active"><a href='login_success.php.php'>Home</a></li>
+      <li class="active"><a href='AddItem.php'>I want to sell</a></li>
+    </ul>
+    <ul class="nav navbar-nav pull-right">
+         <li><a href="../php/Logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    </ul>
 </nav>
 
-    
+<!--    
 <div class="container">
 <h2>Your Account</h2>
 <div class="form-group" id='register'>
@@ -89,7 +86,36 @@ if(isset($_SESSION['UserID'])){
   <input type="date" name="user_dob" value="<?php echo$_SESSION["dob"]?>">
     <p><input type='submit' name='update' value='Update account'></p>
  </form>
- </div>
+ </div>-->
+
+<div class="container" id="itemdisplay">
+<?php
+
+$yourauction="SELECT * FROM item WHERE seller_id=$userid";
+$auctionitem=mysqli_query($connection, $yourauction);
+        if($connection->error){
+            echo "Database connection error";
+        }
+?>
+    <h4>Your auction items<h4>
+    <?php 
+    $i=0;
+    while ($row = mysqli_fetch_assoc($auctionitem)){
+        if($i%3===0){?>
+    <div class="row-fluid pull-left">
+          <ul class="items">
+                <li> <img src="data:image/jpeg;base64,<?php echo base64_encode($row['item_image']); ?>"
+                 style="width:200px;height:230px"/>
+                    <h4 class="h4">
+                        <?php echo $row['item_name'];?></h4>
+                    <p> Current highest bid:<?php echo $row['item_highest_bid'];?> </p>
+                    <a class="btn btn-info" name='details' href="EditItem.php?userid=$userid&&item_id=<?php echo $row['item_id'];?>">Edit your item</a>
+                </li>
+          </ul>
+    </div>
+     <?php }//end if
+    }//end of loop?>
+</div>  
  
 
 

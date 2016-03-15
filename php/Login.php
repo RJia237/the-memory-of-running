@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,14 +32,14 @@
     <div class='form'>Login Failed! Please try again.</div> 
     <?php }?>
   <div class="form-group">
-      <label class="sr-only" for="exampleInputEmail3">Email address</label>
+      <label class="sr-only">Email address</label>
       <input type="text" name="user_email" id='user_email' class="form-control" placeholder='Email'>
     <div class="form-group">
-      <label class="sr-only" for="exampleInputPassword3">Password</label>
+      <label class="sr-only">Password</label>
       <input type="password" name="user_password" id="user_password" class="form-control" placeholder='Password'>
             <div class="checkbox">
                 <label><input type="checkbox"> Remember me</label>
-                <button type="submit" name="login" class="btn btn-default">Sign in</button>
+                <button type="submit" name="login" class="btn btn-default">Log in</button>
              </div>
        </div>
    </div>

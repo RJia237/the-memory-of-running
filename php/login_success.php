@@ -27,7 +27,7 @@ if(isset($_SESSION['UserID'])){
 
 <body>
 
-<?php require '../includes/navbar.php';?>
+<?php include '../includes/navbar.php';?>
 
 
 <div class="card-text">
@@ -38,6 +38,7 @@ if(isset($_SESSION['UserID'])){
     <form action='login_success.php' method='GET'>
         <div class='container-fluid' id='categorylist'>
         <?php
+        //output categories from database
 $catlist = "SELECT * FROM item_category";
 $c_query = mysqli_query($catlist);
 $category = mysqli_fetch_assoc($c_query);

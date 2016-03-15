@@ -92,6 +92,7 @@ if (isset($_POST['new_bid_submit'])){
                     <p class="card-text"> Description:<?php echo $row['item_description'];?><p>
                     <p> From £<?php echo $row['item_selling_price'];?> </p>
                     <p>Highest bid:£ <?php echo $row['item_highest_bid'];?></p>
+                    <p>Auction close on:<?php echo $row['item_close_date'];?></p>
                     <form action="ItemDetail.php" method="post">
                     <input type="hidden" name="item_id" value="<?php echo $row['item_id']?>">
                     <input type="text" name="new_bid">

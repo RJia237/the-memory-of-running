@@ -54,11 +54,11 @@
     <form method='post' action='../includes/login.php' >
         <div class="form-group">
            <label class="sr-only">Email address</label>
-           <input type="text" name="email" id='user_email' class="form-control" placeholder='Email'>
+           <input type="text" name="user_email" id='user_email' class="form-control" placeholder='Email'>
         </div>
            <div class="form-group">
            <label class="sr-only">Password</label>
-           <input type="password" name="password" id="user_password"class="form-control" placeholder='Password'>
+           <input type="password" name="user_password" id="user_password" class="form-control" placeholder='Password'>
         <div class="checkbox">
            <label><input type="checkbox"> Remember me</label> 
               <button type="submit" name="login" class="btn btn-default">Sign in</button>
