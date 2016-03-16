@@ -38,7 +38,7 @@ if(isset($_SESSION['UserID'])){
 </nav>
 
 
-<form method="post" action='../includes/addeditem.php' enctype="multipart/form-data" class="form-horizontal" role="form">
+<form method="post" action='../includes/addeditem_action.php' enctype="multipart/form-data" class="form-horizontal" role="form">
   <div class="form-group">
     <label class="control-label" for="item_name">Auction item name:</label>
     <div class="col-sm-10">
@@ -67,6 +67,14 @@ if(isset($_SESSION['UserID'])){
     </div>
   </div>
   
+   <div class="form-group">
+    <label class="control-label" for="close_date">Auction ends on:</label>
+    <input type="date" class="form-control" name = "dateclose" id="input" placeholder="Enter the close date of your auction." >
+    <label>time</lable>
+    <input type="time" class="form-control" name = "timeclose" id="input" placeholder="Enter the close date of your auction." ><br/>
+   </div>
+    
+    
   <div class="form-group">
 <?php
 $catlist = "SELECT * FROM item_category";

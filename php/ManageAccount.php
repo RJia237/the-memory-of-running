@@ -61,7 +61,7 @@ if(isset($_SESSION['UserID'])){
       <a class="navbar-brand" href="#">OnlineAuction </a>
     </div>
     <ul class="nav navbar-nav pull-left">
-      <li class="active"><a href='login_success.php.php'>Home</a></li>
+      <li class="active"><a href='login_success.php'>Home</a></li>
       <li class="active"><a href='AddItem.php'>I want to sell</a></li>
     </ul>
     <ul class="nav navbar-nav pull-right">
@@ -109,7 +109,7 @@ $auctionitem=mysqli_query($connection, $yourauction);
                     <h4 class="h4">
                         <?php echo $row['item_name'];?></h4>
                     <p> Current highest bid:<?php echo $row['item_highest_bid'];?> </p>
-                    <a class="btn btn-info" name='details' href="EditItem.php?userid=$userid&&item_id=<?php echo $row['item_id'];?>">Edit your item</a>
+                    <a class="btn btn-info" name='details' href="ItemDetail.php?userid=$userid&&item_id=<?php echo $row['item_id'];?>">Edit your item</a>
                 </li>
           </ul>
     </div>

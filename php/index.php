@@ -61,7 +61,7 @@
            <input type="password" name="user_password" id="user_password" class="form-control" placeholder='Password'>
         <div class="checkbox">
            <label><input type="checkbox"> Remember me</label> 
-              <button type="submit" name="login" class="btn btn-default">Sign in</button>
+              <button type="submit" name="login" class="btn btn-default">Log in</button>
         </div>
 
     </form> 

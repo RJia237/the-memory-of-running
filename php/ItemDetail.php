@@ -17,13 +17,14 @@ if(isset($_POST["item_id"])){
     $itemid = $connection->real_escape_string($_GET["item_id"]);
 }
 
+
 //Input new bid
 $newbid=$_POST['new_bid'];
 $userid=$_SESSION['UserID'];
 
 
 //display items.
-$message='';
+
 $sql="SELECT * FROM item WHERE item_id='$itemid'";
 $result=mysqli_query($connection, $sql);
         if($connection->error){
@@ -33,7 +34,7 @@ $result=mysqli_query($connection, $sql);
         }
 
 
-//Input new bidu
+//Input new bid
 if (isset($_POST['new_bid_submit'])){
     if($row['item_highest_bid']=''){
     $connection->query("INSERT INTO item (item_highest_bid,success_bidder_id) "
