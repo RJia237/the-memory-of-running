@@ -1,46 +1,11 @@
-<?php require '../includes/connect.php';
+<?php 
+require '../includes/connect.php';
 //Check if user is logged in
 session_start();
 if(isset($_SESSION['UserID'])){
 }else{
     header('Location:Login.php');
 }
-?>
-
-<?php 
-     $userid=$_SESSION["UserID"];
-     $result=$connection->query("SELECT * FROM user WHERE user_id=$userid");
-     $row=$result->fetch_array(MYSQLI_BOTH);
-     
-     session_start();
-     
-     $_SESSION["Firstname"]=$row["user_firstname"];
-     $_SESSION["Lastname"]=$row["user_lastname"];
-     $_SESSION["Email"]=$row["user_email"];
-     $_SESSION["Password"]=$row["user_password"];
-     $_SESSION["Dob"]=$row["user_dob"];
-?>
-
-<?php
-/* Update account*/
-     if(isset($_POST['update'])){
-         
-         $updatefn=$_POST['user_firstname'];
-         $updateln=$_POST['user_lastname'];
-         $updateps=$_POST['user_password'];
-         $updateemail=$_POST['user_email'];
-         $updatedob=$_POST['user_dob'];
-                
-         $sql=$con->query("UPDATE user SET user_firstname='{$updatefn}',"
-         . "user_lastname='{$updateln}',user_email='{$updateemail}',"
-         . "user_password='{$updateps}',user_dob='{$updatedob}'");
-         
-         header('Location:ManageAccount.php');
-     }
-
-
-
-
 ?>
 
 
@@ -69,34 +34,17 @@ if(isset($_SESSION['UserID'])){
     </ul>
 </nav>
 
-<!--    
-<div class="container">
-<h2>Your Account</h2>
-<div class="form-group" id='register'>
-  <form method='post' action='' name='UpadateUserForm' >
-    E-mail:
-    <input type="email" name="user_email" value="<?php echo$_SESSION["Email"]?>"><br>
-    User password:
-    <input type="password" name="user_password" value="<?php echo$_SESSION["Password"]?>"><br>
-    First Name:
-    <input type='text' name='user_firstname' size='30' value="<?php echo$_SESSION["Firstname"]?>"><br>
-    Last Name:
-    <input type='text' name='user_lastname' size='30' value="<?php echo$_SESSION["Lastname"]?>"><br>
-    Birthday:
-  <input type="date" name="user_dob" value="<?php echo$_SESSION["dob"]?>">
-    <p><input type='submit' name='update' value='Update account'></p>
- </form>
- </div>-->
+ 
+
 
 <div class="container" id="itemdisplay">
 <?php
 
-$yourauction="SELECT * FROM item WHERE seller_id=$userid";
+$yourauction="SELECT * FROM auction WHERE seller_id={$_SESSION['UserID']}";
 $auctionitem=mysqli_query($connection, $yourauction);
         if($connection->error){
             echo "Database connection error";
-        }
-?>
+        } ?>
     <h4>Your auction items<h4>
     <?php 
     $i=0;
@@ -104,12 +52,12 @@ $auctionitem=mysqli_query($connection, $yourauction);
         if($i%3===0){?>
     <div class="row-fluid pull-left">
           <ul class="items">
-                <li> <img src="data:image/jpeg;base64,<?php echo base64_encode($row['item_image']); ?>"
+                <li> <img src="data:image/jpeg;base64,<?php echo base64_encode($row['image']); ?>"
                  style="width:200px;height:230px"/>
                     <h4 class="h4">
-                        <?php echo $row['item_name'];?></h4>
-                    <p> Current highest bid:<?php echo $row['item_highest_bid'];?> </p>
-                    <a class="btn btn-info" name='details' href="ItemDetail.php?userid=$userid&&item_id=<?php echo $row['item_id'];?>">Edit your item</a>
+                        <?php echo $row['name'];?></h4>
+                    <p> Current highest bid:<?php echo $row['highest_bid'];?> </p>
+                    <a class="btn btn-info" name='details' href="ItemDetail.php?userid=$userid&&item_id=<?php echo $row['id'];?>">Edit your item</a>
                 </li>
           </ul>
     </div>
@@ -117,6 +65,35 @@ $auctionitem=mysqli_query($connection, $yourauction);
     }//end of loop?>
 </div>  
  
+<div class="container" id="itemdisplay">
+<?php
+
+$yourbid="SELECT a.id, a.name,a.image,b.value FROM auction AS a,bid AS b
+WHERE a.id=b.auction_id AND b.buyer_id={$_SESSION['UserID']}";
+
+$biditem=mysqli_query($connection, $yourbid);
+        if(!$biditem){
+            echo $connection->error;
+        } ?>
+    <h4>Your Bids<h4>
+    <?php 
+    $i=0;
+    while ($row = mysqli_fetch_assoc($biditem)){
+        if($i%3===0){ ?>
+    <div class="row-fluid pull-left">
+          <ul class="items">
+                <li> <img src="data:image/jpeg;base64,<?php echo base64_encode($row['image']); ?>"
+                 style="width:200px;height:230px"/>
+                    <h4 class="h4">
+                        <?php echo $row['name'];?></h4>
+                    <p> Your bid:<?php echo $row['value'];?> </p>
+                    <a class="btn btn-info" name='details' href="ItemDetail.php?auctionID=<?php echo $row['id'];?>">Edit your item</a>
+                </li>
+          </ul>
+    </div>
+     <?php }//end if
+    }//end of loop?>
+</div>  
 
 
   

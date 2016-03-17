@@ -5,61 +5,83 @@ if(isset($_SESSION['UserID'])){
 }else{
     header('Location:Login.php');
 }
-?>
 
+//Check User is allowed to bid
 
-<?php
-//display item information
+//Define some variables
 
-if(isset($_POST["item_id"])){
-    $itemid = $connection->real_escape_string($_POST["item_id"]);
-}else if(isset($_GET["item_id"])){
-    $itemid = $connection->real_escape_string($_GET["item_id"]);
+if(isset($_POST['auctionID'])){
+    //Make sure both POST and GET methods work
+    $auctionID = $connection->real_escape_string($_POST['auctionID']);
+}else if(isset($_GET['auctionID'])){
+    $auctionID = $connection->real_escape_string($_GET['auctionID']);
 }
 
 
-//Input new bid
 $newbid=$_POST['new_bid'];
 $userid=$_SESSION['UserID'];
 
+/*******************
+ * Close the auction and trigger actions when auction is expired
+ *******************/
+$expireauction="SELECT * FROM auction, bid"
+              ."WHERE auction.id=$auctionID"
+              ."AND auction.id=bid.auction_id"
+              ."AND CURRENT_TIMESTAMP()= auction.end_date "
+              ."AND winner IS NULL";
+$endauction=$connection->query($expireauction);
 
-//display items.
+if(mysqli_num_rows($endauction)>0){
+    //award winner 
+    header('Location: ../includes/EndAuction.php');
+    
+    
+    
+    
+}else{
 
-$sql="SELECT * FROM item WHERE item_id='$itemid'";
+/***************************
+ * display the auction details from the auction table
+ ***************************/
+ 
+$sql="SELECT * FROM auction WHERE id='$auctionID'";
 $result=mysqli_query($connection, $sql);
         if($connection->error){
             $message= $connection->error;
         }else{
-            $row=$result->fetch_assoc();
+            
+            $itemdetail=$result->fetch_assoc();
         }
 
+ /*******************************
+ *Buyers can see other buyers’ bids. 
+ *******************************/
+$result2=$connection->query("SELECT * FROM bid WHERE auction_id='$auctionID'"
+                          . "ORDER BY value DESC");
 
-//Input new bid
-if (isset($_POST['new_bid_submit'])){
-    if($row['item_highest_bid']=''){
-    $connection->query("INSERT INTO item (item_highest_bid,success_bidder_id) "
-            . "VALUES($newbid,$userid)"
-    . "WHERE item_id='$itemid'");
-    
-    }elseif($newbid<$row['item_selling_price']){
-              echo "Bid has to be higher then the minimum bid!";
-               }   
-        
-             if($newbid>$row['item_highest_bid']){ 
-              $connection->query("UPDATE item SET item_highest_bid= '{$newbid}' "
-              . "success_bidder_id='{$userid}'"
-              . "WHERE item_id = $itemid ");
-              echo"bid added";
-                }else{
-                 echo"Sorry! New bid has to be higher then the current highest bid.";
-                 }
-                 
-    header("Location:ItemDetail.php?item_id=$itemid");
-    
+        if($connection->error){
+            echo $connection->error;
+        }else{          
+              $bid=$result2->fetch_array();
+          }
 }
 
-
-
+ /****************************
+  * Bidder can add bid
+  ****************************/
+ if(isset($_POST["new_bid_submit"])){
+     $sql="INSERT INTO bid (auction_id,buyer_id, value) "
+         . "VALUES($auctionID,$userid,$newbid)";
+     $newbid=$connection->query($sql);
+     //echo $sql;
+     
+     if(!$newbid){
+     echo $connection->error;
+     }else{
+         header("Location:ManageAccount.php");
+     }
+ }     
+          
 ?>
 
 <!DOCTYPE html>
@@ -83,27 +105,50 @@ if (isset($_POST['new_bid_submit'])){
 <body>
 <?php require '../includes/navbar.php';?>
 
-<div class="container col-lg-6">
-    <div class="card" id="item_details">
-        <img "card-img-top" src="data:image/jpeg;base64,<?php echo base64_encode($row['item_image']); ?>"
+<div class="container col-md-6"> 
+      <div class="card" id="item_details">
+        <img "card-img-top" src="data:image/jpeg;base64,<?php echo base64_encode($itemdetail['image']); ?>"
                  style="width:300px;height:330px"/>
             <div class="card card-block" >
                <h4 class="card-title">
-                        <?php echo $row['item_name'];?></h4>
-                    <p class="card-text"> Description:<?php echo $row['item_description'];?><p>
-                    <p> From £<?php echo $row['item_selling_price'];?> </p>
-                    <p>Highest bid:£ <?php echo $row['item_highest_bid'];?></p>
-                    <p>Auction close on:<?php echo $row['item_close_date'];?></p>
-                    <form action="ItemDetail.php" method="post">
-                    <input type="hidden" name="item_id" value="<?php echo $row['item_id']?>">
-                    <input type="text" name="new_bid">
+                        <?php echo $itemdetail['name'];?></h4>
+                    <p class="card-text"> Description:<?php echo $itemdetail['description'];?><p>
+                    <p> From £<?php echo $itemdetail['starting_price'];?> </p>
+                    <p>Auction close on:<?php echo $itemdetail['end_date'];?></p>
+               <form action='' method='POST'>
+                    <input type="hidden" name="auctionID" value="<?php echo $itemdetail['id']?>">
+                    <input type="number" name="new_bid">
                     <input type="submit" name="new_bid_submit" class="btn btn-default" vlue="Put a new bid">
-                    </form>
-              </div>
-     </div>
+               </form>
+            </div>
+       </div>
 </div>
     
+ <div class="container col-md-6">
+  <h2>Current bids</h2>          
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Bids £</th>
+        <th>Bid added</th>
+      </tr>
+    </thead>
+    <tbody>  
+       <?php 
+         // $i=0;
+          while($bid=mysqli_fetch_array($result2)){ ?> 
+        <tr>  
+        <td><?php echo $bid['value'];?></td>
+        <td><?php echo $bid['date'];?></td>
+      </tr>
+         <?php } ?>   
+    </tbody>
+  </table>
+</div>
+
+ 
     
+
     
     
 </body>

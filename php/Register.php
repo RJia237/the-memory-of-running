@@ -31,15 +31,15 @@
 <div class="form-group" id='register'>
   <form method='post' action='../includes/registerNewUser.php' name='newUserForm'>
     E-mail:
-    <input type="email" name="user_email"><br>
+    <input type="email" name="email"><br>
     User password:
-    <input type="password" name="user_password"><br>
+    <input type="password" name="password"><br>
     First Name:
-    <input type='text' name='user_firstname' size='30'><br>
+    <input type='text' name='firstname' size='30'><br>
     Last Name:
-    <input type='text' name='user_lastname' size='30'><br>
+    <input type='text' name='lastname' size='30'><br>
     Birthday:
-  <input type="date" name="user_dob">
+  <input type="date" name="dob">
     <p><input type='submit' name='submit' value='Create New User'></p>
  </form>
  </div>

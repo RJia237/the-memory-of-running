@@ -1,7 +1,7 @@
 <?php require '../includes/connect.php';
 //Log out user
 session_start();
-unset($_SESSION['user_id']);
+unset($_SESSION['UserID']);
 session_destroy();
 
 ?>
